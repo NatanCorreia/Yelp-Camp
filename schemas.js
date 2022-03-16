@@ -1,5 +1,5 @@
 const Joi = require('joi');
-const { number } = require('joi');
+
 
 module.exports.campgroundSchema = Joi.object({
     campground: Joi.object({
@@ -19,5 +19,12 @@ module.exports.reviewSchema = Joi.object({
     review: Joi.object({
         text: Joi.string().required(),
         rating: Joi.number().required().min(1).max(5)
+    }).required()
+});
+
+module.exports.userSchema = Joi.object({
+    user: Joi.object({
+        userName: Joi.string().required(),
+        password: Joi.string().required()
     }).required()
 });

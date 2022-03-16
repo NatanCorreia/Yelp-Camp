@@ -9,6 +9,10 @@ const CampgroundSchema = new Schema({
     price: Number,
     description: String,
     location: String,
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
     reviews: [
         {
             type: Schema.Types.ObjectId,
@@ -16,7 +20,7 @@ const CampgroundSchema = new Schema({
         }]
 });
 
-
+// post middleware that triggers after the deletion of one campground, deleting all reviews associated with it, like a cascade on sql.
 CampgroundSchema.post('findOneAndDelete', async function (doc) {
     if (doc) {
         await review.deleteMany({
