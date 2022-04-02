@@ -1,6 +1,9 @@
 (function () {
     'use strict'
 
+    // allow to visualize the name of the files uploaded on the bootstrap input
+    bsCustomFileInput.init()
+
     // Fetch all the forms we want to apply custom Bootstrap validation styles to
     const forms = document.querySelectorAll('.validated-form')
 
@@ -17,3 +20,4 @@
             }, false)
         })
 })()
+

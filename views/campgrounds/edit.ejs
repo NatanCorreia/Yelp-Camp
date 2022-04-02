@@ -1,42 +1,83 @@
-<% layout('layouts/boilerplate') %> 
-<div class="row">
-    <h1 class="text-center"> Edit Campground</h1>
-    <div class="col-6 offset-3">
+<% layout('layouts/boilerplate') %>
 
-        <form action="/campgrounds/<%=campground._id%>?_method=PUT " method="POST" novalidate class="validated-form">
-            <div class="mb-3">
-                <label class="form-label" for="title">Title</label>
-                <input class="form-control" type="text" name="campground[title]" id="title" value="<%=campground.title  %> "required>
-            </div>
-            <div class="mb-3">
-                <label class="form-label for=" location">Location</label>
-                <input class="form-control" type="text" name="campground[location]" id="location" value="<%=campground.location%> "required>
-            </div>
-            <div class="mb-3">
-                <label class="form-label for="image">Image URL</label>
-                <input class="form-control" type="text" name="campground[image]" id="image" value="<%=campground.image  %> "required>
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="price">Campground Price</label>
-            <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="price-label">$</span>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/themes/prism.min.css">
+    <link rel="stylesheet" href="/stylesheets/bootstrap-image-checkbox.css">
+    <div class="row">
+        <h1 class="text-center"> Edit Campground</h1>
+        <div class="col-6 offset-3">
+
+            <form action="/campgrounds/<%=campground._id%>?_method=PUT " method="POST" novalidate class="validated-form"
+                enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label class="form-label" for="title">Title</label>
+                    <input class="form-control" type="text" name="campground[title]" id="title"
+                        value="<%=campground.title  %> " required>
                 </div>
-                <input type="text" name="campground[price]" class="form-control" placeholder="0.00" aria-label="price" aria-describedby="price-label" value="<%=campground.price%> "required>
-              </div>
-            </div>
-            <div class="mb-3">
-                <label class="form-label for="description">Description</label>
-                <textarea class="form-control" type="text" name="campground[description]" id="description" required >  <%=campground.description  %></textarea>
-            </div>
-            <div class="mb-3">
-                <button class="btn btn-info">Update Campground</button>
-            </div>
+                <div class="mb-3">
+                    <label class="form-label for=" location">Location</label>
+                    <input class="form-control" type="text" name="campground[location]" id="location"
+                        value="<%=campground.location%> " required>
+                </div>
 
-        </form>
-        <a href="/campgrounds">All Campgrounds</a>
+                <div class="mb-3">
+                    <label class="form-label" for="price">Campground Price</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="price-label">$</span>
+                        </div>
+                        <input type="text" name="campground[price]" class="form-control" placeholder="0.00"
+                            aria-label="price" aria-describedby="price-label" value="<%=campground.price%> " required>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label for=" description">Description</label>
+                    <textarea class="form-control" type="text" name="campground[description]" id="description"
+                        required>  <%=campground.description  %></textarea>
+                </div>
+                <div class="mb-3">
+                    <div class="form-file custom-file">
+                        <input type="file" class="form-file-input" id="image" name="image" multiple>
+                        <label class="form-file-label" for="image">
+                            <span class="form-file-text custom-file-label">Add more image(s)...</span>
+                            <span class="form-file-button">Browse</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class=" row mb-3">
+                        <% campground.images.forEach(function (img,i){ %>
+
+                            <div class="col-md-3 form-check-inline custom-control custom-checkbox image-checkbox">
+                                <input type="checkbox" id="image-<%=i%>" name="deleteImages[]" value="<%=img.filename%>"
+                                    class="custom-control-input">
+
+                                <label for="image-<%=i%>" class="custom-control-label">
+                                    <img src="<%=img.thumbnail %>" class="img-fluid" alt=""></label>
+                            </div>
+                            <% })%>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-info">Update Campground</button>
+                </div>
+
+            </form>
+            <a href="/campgrounds">All Campgrounds</a>
 
 
+        </div>
     </div>
-</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/prism.min.js" data-manual></script>
+    <script src="/scripts/source.js"></script>
 
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
