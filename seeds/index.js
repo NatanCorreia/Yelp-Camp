@@ -25,7 +25,7 @@ const seedDB = async () =>{
             geometry:{ "type" : "Point", "coordinates" : [cities[random1000].longitude,cities[random1000].latitude]},
             images:[
                 {
-                  url: 'https://res.cloudinary.com/dysjklkza/image/upload/v1647867008/scott-goodwill-y8Ngwq34_Ak-unsplash_mbpauo.jpg',
+                  url: 'https://res.cloudinary.com/dysjklkza/image/upload/v1647549959/sample.jpg',
                   filename: 'scott-goodwill-y8Ngwq34_Ak-unsplash_mbpauo',
                   
                 },
