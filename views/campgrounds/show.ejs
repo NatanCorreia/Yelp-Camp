@@ -71,8 +71,8 @@
             </fieldset>
           </div>
           <div class="mb-3">
-            <label for="text" class="form-label"> Review</label>
-            <textarea name="review[text]" id="text" cols="30" rows="3" class="form-control" required></textarea>
+            <label for="body" class="form-label"> Review</label>
+            <textarea name="review[body]" id="body" cols="30" rows="3" class="form-control" required></textarea>
           </div>
           <button class="btn btn-success">Submit</button>
 
@@ -88,7 +88,7 @@
                 <h6 class="card-subtitle">
                   <%= review.author.username %>
                 </h6>
-                <p class="card-text">Review <%=review.text %>
+                <p class="card-text">Review <%=review.body%>
                 </p>
                 <% if(currentUser && review.author.equals(currentUser._id)) { %>
                   <form action="/campgrounds/<%=foundCamp._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
